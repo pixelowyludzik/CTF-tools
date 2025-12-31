@@ -145,17 +145,16 @@ searching for directories:
 ```
 Interesting findings:
 http://10.80.158.213:8080/token returns website with number: **2713.387**
-
-http://10.80.158.213:8080/mappings - 
+http://10.80.158.213:8080/mappings - here we have list of available endpoints:
 ![](attachments/image-1.png)
 http://10.80.158.213:8080/health
 ![](attachments/image-2.png)
-
+On main website I checked all links but **/burn.html** has some form so it's most interesting place.
+In console we can see that there is some websocket but not open
 ![](attachments/image-5.png)
-in console we can see that there is some websocket but not open
-intercepting request to /burn.html in burp:
+I intercepted request to /burn.html in burp to play with it:
 ![](attachments/image-6.png)
-on main website I checked all links but **/burn.html** has some form so it's most interesting place.
+
 Maybe we could smuggle some requests to access forbidden endpoints we have listed in: http://10.80.158.213:8080/mappings ?
 ![](attachments/image-3.png)
 
