@@ -147,17 +147,17 @@ Interesting findings:
 http://10.80.158.213:8080/token returns website with number: **2713.387**
 
 http://10.80.158.213:8080/mappings - 
-![[image-1.png]]
+![](attachments/image-1.png)
 http://10.80.158.213:8080/health
-![[image-2.png]]
+![](attachments/image-2.png)
 
-![[image-5.png]]
+![](attachments/image-5.png)
 in console we can see that there is some websocket but not open
 intercepting request to /burn.html in burp:
-![[image-6.png]]
+![](attachments/image-6.png)
 on main website I checked all links but **/burn.html** has some form so it's most interesting place.
 Maybe we could smuggle some requests to access forbidden endpoints we have listed in: http://10.80.158.213:8080/mappings ?
-![[image-3.png]]
+![](attachments/image-3.png)
 
 I will try to upgrade request to websocket as it was described: https://tryhackme.com/room/wsrequestsmuggling and smuggle GET to access a **/admin-flag** or **/admin-creds** endpoint
 I've sent request to burp repeater, disabled in settings "Update content-length", and added headers:
@@ -165,10 +165,10 @@ Sec-WebSocket-Version: 123
 Upgrade: WebSocket
 Connection: Upgrade
 Sec-WebSocket-Key: nf6dB8Pb/BLinZ7UexUXHg==
-![[image-9.png]]
+![](attachments/image-9.png)
 Response is 403, so this is not enough.
 In mappings we have **/isOnline** endpoint and here we have some service status based on information from this endpoint:
-![[image-10.png]]
+![](attachments/image-10.png)
 We have something can help us in our lesson: https://tryhackme.com/room/wsrequestsmuggling under **"Leveraging SSRF"** topic.
 I copied to my kali linux python script from tryhackme lesson to setup server:
 
@@ -204,9 +204,9 @@ Sec-WebSocket-Key: nf6dB8Pb/BLinZ7UexUXHg==
 and set url parameter to my MY_SERVER_IP:5555
 
 we received **101** response with **first flag!** (Remember about adding enter on the end of request - I always forget about it)
-![[image-12.png]]Flag contains some declination... hmm.. maybe it's place of our pirate from task description, who knows? In google maps this declination shows river in Norway.
+![](attachments/image-12.png)Flag contains some declination... hmm.. maybe it's place of our pirate from task description, who knows? In google maps this declination shows river in Norway.
 We can ask now for /admin-creds:
-![[image-13.png]]
+![](attachments/image-13.png)
 
 
 username: ***REDACTED***
@@ -214,23 +214,24 @@ password: ***REDACTED***
 we have endpoint:
 https://elbandito.thm:80/login
 but method get is not allowed here, so I intercepted it in burp, changed to POST:
-![[image-14.png]]
-![[image-16.png]]I looged in using password and user from **/admin-creds** endpoint. 
+![](attachments/image-14.png)
+![](attachments/image-16.png)
+I looged in using password and user from **/admin-creds** endpoint. 
 now I have access to some chat:
-![[image-18.png]]
+![](attachments/image-18.png)
 I intercepted message "test" I've sent to Jack:
-![[image-19.png]]
+![](attachments/image-19.png)
 it's using **HTTP/2** and I think it's sign that we need to check what was in our lessons about it: https://tryhackme.com/room/http2requestsmuggling
 
 we can check if downgrate to HTTP/1.1 is possible:
-![[image-21.png]]
+![](attachments/image-21.png)
 Looks like it is because response was sent with HTTP/1.1
 is request smuggling possible?
 yes it is
-![[image-23.png]]
-![[image-24.png]]
+![](attachments/image-23.png)
+![](attachments/image-24.png)
 Above we have request - Content Length is 4 because we have data in body "test". POST will be treated as second - smuggled - request. We have to try with different content lengths to get message from aliens.
 After we send this request we have to wait a bit and send **/getMessages** request to get all messages:
-![[image-25.png]]
+![](attachments/image-25.png)
 
 In getting last flag https://voltatech.in/blog/2024/tryhackme-elbandito/#http2-desync-attack this explanation helped me a lot, especially the things related to content-length. Thanks to this writeup I understand It better now :)

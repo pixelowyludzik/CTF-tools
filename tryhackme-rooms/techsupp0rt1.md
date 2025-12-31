@@ -6,7 +6,7 @@ Please allow about 5 minutes for the machine to fully boot!
 **Note**: The theme and security warnings encountered in this room are part of the challenge.
 
 1. on main website there is default apache2 page with nothing special added in source:
-   ![[Pasted image 20251230184004.png]]
+   ![](attachments/img-20251230184004.png)
 2. nmap scaning:
    ```bash
    └─$ nmap -p- -sS -sC -A -T4 10.81.180.13
@@ -95,7 +95,7 @@ Wordpress creds
   ```
 when we are trying to access 10.81.180.13/subrion it points to /subrion/subrion/
 bur we have information that there is some running wordpress:
-![[Pasted image 20251230190330.png]]
+![](attachments/img-20251230190330.png)
 what we can read from source:
 - WordPress version is 5.7.2
 - there is some user named support as we can check in Blog section
@@ -136,7 +136,7 @@ what we can read from source:
 ```
 trying to access /subrion
 intercepting request from browser:
-![[Pasted image 20251230192122.png]]
+![](attachments/img-20251230192122.png)
 more directory scanning...
 ```bash
 └─$ feroxbuster -u 'http://10.82.130.250:80/' -w /usr/share/seclists/Discovery/Web-Content/big.txt 
@@ -150,28 +150,28 @@ http://10.82.130.250/test/
 under this address there is some website, looks hacked, there was a lot of popups. 
 I decided to further check what's going on with **/subrion**:
 I couldn't access it because of wrong redirects:
-![[Pasted image 20251230221741.png]]
+![](attachments/img-20251230221741.png)
 But I decided to run some directory enumeration:
 ```bash
  feroxbuster -u 'http://10.82.130.250:80/subrion/' -w /usr/share/seclists/Discovery/Web-Content/big.txt                                
  # only robots.txt, sitemap.xml, README.md accessible with 200 response                                                                                 
 ```
-![[Pasted image 20251230222758.png]]
+![](attachments/img-20251230222758.png)
 Ok here we have panel:
 http://10.82.130.250/subrion/panel/
-![[Pasted image 20251230222852.png]]
+![](attachments/img-20251230222852.png)
 Remember? we have credentials to this panel:
 **admin:7sKvntXdPEJaxazce9PXi24zaFrLiKWCk**
 I used **cyberchef** and **Magic** formula to decode it:
 
-![[Pasted image 20251230223040.png]]
-![[Pasted image 20251230223138.png]]
+![[img-20251230223040.png]]
+![](attachments/img-20251230223138.png)
 I tried edit sitemapGeneration php script to gain reverse shell but it was not possible. Anyway, I decided to search for exploit dedicated for subrion CMS:
-![[Pasted image 20251230225507.png]]ok now we have shell:
+![](attachments/img-20251230225507.png)ok now we have shell:
 there is password in **wordpress/wp-config.php**:
 db_user: **REDACTED**
 db_password: **REDACTED**
-![[Pasted image 20251230231134.png]]
+![](attachments/img-20251230231134.png)
 but maybe credentials are reused???
 I searched for user support but there is no such user in passwd, but there is scamsite user:
 ```bash
@@ -189,4 +189,4 @@ sudo iconv -f 8859_1 -t 8859_1 "/root/root.txt"
 ```
 I checked also to confirm in https://gtfobins.github.io/gtfobins/iconv/#sudo
 it allows us to read final flag from root home directory:
-![[Pasted image 20251230233959.png]]
+![](attachments/img-20251230233959.png)
