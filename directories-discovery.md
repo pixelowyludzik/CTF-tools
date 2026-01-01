@@ -9,8 +9,8 @@ feroxbuster -u 'http://TARGET_IP/' -w /wordlist/path
 
 ```
 good wordlists:
-1. /usr/share/wordlists/SecLists/Discovery/Web-Content/common.txt
-2. /usr/share/wordlists/SecLists/Discovery/Web-Content/big.txt
+1. /usr/share/seclists/Discovery/Web-Content/common.txt
+2. /usr/share/seclists/Discovery/Web-Content/big.txt
 3. /media/sf_wordlists/SecLists-master/Discovery/Web-Content/raft-medium-files.txt
 4. /media/sf_wordlists/SecLists-master/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt
 5. /media/sf_wordlists/SecLists-master/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-big.txt

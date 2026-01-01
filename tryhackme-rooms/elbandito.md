@@ -196,15 +196,17 @@ python3 server.py 5555
 ```
 I intercepted using burp request to **/isOnline** endpoint:
 and added headers:
+```bash
 Sec-WebSocket-Version: 123
 Upgrade: WebSocket
 Connection: Upgrade
 Sec-WebSocket-Key: nf6dB8Pb/BLinZ7UexUXHg==
+```
 and set url parameter to my MY_SERVER_IP:5555
 
 we received **101** response with **first flag!** (Remember about adding enter on the end of request - I always forget about it)
 ![](attachments/image-12.png)Flag contains some declination... hmm.. maybe it's place of our pirate from task description, who knows? In google maps this declination shows river in Norway.
-We can ask now for /admin-creds:
+We can ask now for **/admin-creds**:
 ![](attachments/image-13.png)
 
 
@@ -234,3 +236,7 @@ After we send this request we have to wait a bit and send **/getMessages** reque
 ![](attachments/image-25.png)
 
 In getting last flag https://voltatech.in/blog/2024/tryhackme-elbandito/#http2-desync-attack this explanation helped me a lot, especially the things related to content-length. Thanks to this writeup I understand It better now :)
+It was also possible to find admin credentials and first flag using endpoint **heapdumps** and tool **visualvm**:
+
+![](attachments/image-8.png)
+
