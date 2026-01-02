@@ -1,4 +1,4 @@
-### capabilities
+fin### capabilities
 ```
 sudo -l  
 # use website GTFObins to check what you can do with this command output
@@ -68,3 +68,6 @@ ls -la /etc/apparmor.d
 # check type of shell:
 cat /etc/passwd
 ```
+### using fail2ban
+https://juggernaut-sec.com/fail2ban-lpe/
+[here is example](tryhackme-rooms/billing.md)
