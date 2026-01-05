@@ -1,5 +1,5 @@
 ```bash
-nmap -p- -sS -sC -sV -A -T4 <IP>  
+ <IP>  
 nmap -p- -sS -sV -T4 -A -sC <IP>
 nmap -A -p- [Machine_IP] -T5 -Pn
 ```
