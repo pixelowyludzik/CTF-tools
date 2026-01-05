@@ -22,9 +22,13 @@ export TERM=XTERM-256color
 
 [https://github.com/ambionics/phpggc](https://github.com/ambionics/phpggc)
 
-in kali: webshells (/usr/share/webshells
+in kali linux command: ``webshells`` (/usr/share/webshells)
 
 ## nodejs
 
 [https://github.com/aadityapurani/NodeJS-Red-Team-Cheat-Sheet](https://github.com/aadityapurani/NodeJS-Red-Team-Cheat-Sheet)  
 [https://ibreak.software/2016/08/nodejs-rce-and-a-simple-reverse-shell/](https://ibreak.software/2016/08/nodejs-rce-and-a-simple-reverse-shell/)
+
+## Useful resources:
+
+https://highon.coffee/blog/reverse-shell-cheat-sheet/#bash-reverse-shells

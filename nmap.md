@@ -1,6 +1,7 @@
 ```bash
 nmap -p- -sS -sC -sV -A -T4 <IP>  
 nmap -p- -sS -sV -T4 -A -sC <IP>
+nmap -A -p- [Machine_IP] -T5 -Pn
 ```
 types of scan:
 1. ARP Scan
@@ -17,3 +18,4 @@ types of scan:
    `sudo nmap -PA22,80,443 -sn MACHINE_IP/30`
 7. UDP Ping Scan
    sudo nmap -PU53,161,162 -sn MACHINE_IP/30`
+https://highon.coffee/blog/nmap-cheat-sheet/

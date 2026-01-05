@@ -11,3 +11,4 @@ cat id_rsa.pub > ~/.ssh/authorized-keys
 # run on your kali to login:
 ssh -i id-rsa TARGET_USER@TARGET_IP
 ```
+https://highon.coffee/blog/ssh-lateral-movement-cheat-sheet/

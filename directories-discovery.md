@@ -5,6 +5,8 @@ dirb http://TARGET_IP/ /wordlist/path
 
 gobuster dir --url http://TARGET_IP/ -w /wordlist/path
 
+gobuster dir --no-tls-validation -u https://TARGET_IP:9007/ -w /usr/share/wordlists/dirb/big.txt
+
 feroxbuster -u 'http://TARGET_IP/' -w /wordlist/path
 
 ```
