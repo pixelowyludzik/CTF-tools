@@ -11,7 +11,7 @@ I want keep it simple to have quick access to useful shell commands.
 2. [Subdomains](subdomains.md) Subdomain enumeration techniques.
 3. [Virtual Hosts Discovery](virtual-hosts-discovery.md) Discovering virtual hosts via HTTP.
 4. [Page Source Analysis](page-source-analysis.md) Analyzing HTML, JS, and comments.
-5. [Enumeration](enumeration.md) General service and application enumeration.
+5. [Enumeration](useful%20commands.md) General service and application enumeration.
 6. [Directories Discovery](directories-discovery.md) Directory and file brute-forcing.
 7. [Vulnerability Scanning](vulnerability-scanning.md) Automated and manual vulnerability scanning.
 8. [WFUZZ](WFUZZ.md) Web fuzzing with wfuzz.

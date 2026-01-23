@@ -36,3 +36,11 @@ form.submit();
 };  
 </script>
 ```
+useful resources:
+https://ttp.parzival.sh/pentesting/web-applications/injection-vulnerabilities/cross-site-scripting/stealing-cookies
+https://portswigger.net/web-security/cross-site-scripting/cheat-sheet
+https://infosec-db.github.io/CyberDepot/payloads/web_exploits/xss/
+https://www.almabetter.com/bytes/cheat-sheet/xss
+https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/XSS%20Injection/README.md
+https://findxss.com/
+https://hackersonlineclub.com/cross-site-scripting-xss/

@@ -13,7 +13,6 @@ PORT     STATE SERVICE                 VERSION
 | ftp-syst: 
 |   STAT: 
 | FTP server status:
-|      Connected to ::ffff:192.168.150.117
 |      Logged in as ftp
 |      TYPE: ASCII
 |      No session bandwidth limit

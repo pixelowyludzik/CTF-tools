@@ -1,0 +1,1 @@
+https://osintteam.blog/%EF%B8%8F-file-upload-vulnerabilities-complete-guide-real-exploit-27e0e56ea4ef
